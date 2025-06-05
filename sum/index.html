@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作品集 - 项目展示</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .project-card {
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #3B82F6;
+        }
+
+        .project-section {
+            margin-bottom: 8rem;
+        }
+
+        .project-section:last-child {
+            margin-bottom: 4rem;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen">
+    <!-- 导航栏 -->
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="text-xl font-bold text-gray-800">我的作品集</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="text-gray-600 hover:text-gray-900">首页</a>
+                    <a href="#" class="text-gray-600 hover:text-gray-900">作品</a>
+                    <a href="#" class="text-gray-600 hover:text-gray-900">关于</a>
+                    <a href="#" class="text-gray-600 hover:text-gray-900">联系</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- 银发老人AI回忆录项目 -->
+        <section class="project-section">
+            <!-- 项目标题 -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">银发老人AI回忆录</h1>
+                <p class="text-xl text-gray-600">为老年人设计的智能回忆录制作工具</p>
+            </div>
+
+            <!-- 项目展示 -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+                <!-- 项目预览 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <iframe id="demoFrame" src="../aiold/index.html" class="w-full"
+                        style="height:700px; border:none;"></iframe>
+                </div>
+
+                <!-- 项目说明 -->
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">项目概述</h2>
+                    <p class="text-gray-600 mb-6">
+                        这是一个专为老年人设计的AI回忆录制作工具，通过智能对话和直观的界面，帮助老年人轻松制作和分享他们的珍贵回忆。
+                    </p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">核心功能</h3>
+                    <ul class="feature-list text-gray-600 mb-6">
+                        <li>智能语音对话，降低操作门槛</li>
+                        <li>多模态输入支持（语音、文字、图片）</li>
+                        <li>时间线可视化编辑</li>
+                        <li>AI辅助创作模板</li>
+                        <li>数字人形象定制</li>
+                        <li>一键导出与分享</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">技术特点</h3>
+                    <ul class="feature-list text-gray-600">
+                        <li>响应式设计，适配各种设备</li>
+                        <li>无障碍设计，适合老年人使用</li>
+                        <li>AI语音识别与自然语言处理</li>
+                        <li>云端存储与同步</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 项目亮点 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="text-blue-500 text-3xl mb-4">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">智能对话</h3>
+                    <p class="text-gray-600">通过自然语言交互，让老年人轻松操作</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="text-green-500 text-3xl mb-4">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">AI辅助</h3>
+                    <p class="text-gray-600">智能整理和美化回忆内容</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="text-purple-500 text-3xl mb-4">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">便捷分享</h3>
+                    <p class="text-gray-600">一键分享给家人和朋友</p>
+                </div>
+            </div>
+
+            <!-- 项目链接 -->
+            <div class="text-center">
+                <a href="../aiold/index.html"
+                    class="inline-block bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition-colors">
+                    查看完整演示
+                </a>
+            </div>
+        </section>
+
+        <!-- 个人关系助手项目 -->
+        <section class="project-section">
+            <!-- 项目标题 -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">个人关系助手</h1>
+                <p class="text-xl text-gray-600">智能管理人际关系的AI助手</p>
+            </div>
+
+            <!-- 项目展示 -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+                <!-- 项目预览 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <iframe src="../person/index.html" class="w-full" style="height:700px; border:none;"
+                        scrolling="auto"></iframe>
+                </div>
+
+                <!-- 项目说明 -->
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">项目概述</h2>
+                    <p class="text-gray-600 mb-6">
+                        这是一个帮助用户管理和维护人际关系的智能助手，通过AI技术分析社交互动，提供个性化的关系维护建议。
+                    </p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">核心功能</h3>
+                    <ul class="feature-list text-gray-600 mb-6">
+                        <li>智能关系分析与管理</li>
+                        <li>互动提醒与建议</li>
+                        <li>重要日期提醒</li>
+                        <li>社交互动记录</li>
+                        <li>个性化建议生成</li>
+                        <li>隐私保护机制</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">技术特点</h3>
+                    <ul class="feature-list text-gray-600">
+                        <li>AI情感分析</li>
+                        <li>智能提醒系统</li>
+                        <li>数据加密存储</li>
+                        <li>跨平台同步</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 项目亮点 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="text-blue-500 text-3xl mb-4">
+                        <i class="fas fa-chart-network"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">关系分析</h3>
+                    <p class="text-gray-600">智能分析人际关系网络</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="text-green-500 text-3xl mb-4">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">智能提醒</h3>
+                    <p class="text-gray-600">及时提醒重要互动时机</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="text-purple-500 text-3xl mb-4">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">隐私保护</h3>
+                    <p class="text-gray-600">严格的数据加密与保护</p>
+                </div>
+            </div>
+
+            <!-- 项目链接 -->
+            <div class="text-center">
+                <a href="../person/index.html"
+                    class="inline-block bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition-colors">
+                    查看完整演示
+                </a>
+            </div>
+        </section>
+
+        <!-- AI智能拍照项目 -->
+        <section class="project-section">
+            <!-- 项目标题 -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold text-gray-900 mb-4">AI智能拍照</h1>
+                <p class="text-xl text-gray-600">基于人工智能的智能拍照助手</p>
+            </div>
+
+            <!-- 项目展示 -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+                <!-- 项目预览 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <iframe src="../picture/index.html" class="w-full" style="height:700px; border:none;"></iframe>
+                </div>
+
+                <!-- 项目说明 -->
+                <div class="bg-white rounded-lg shadow-lg p-8">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">项目概述</h2>
+                    <p class="text-gray-600 mb-6">
+                        这是一个革命性的拍照应用，利用先进的人工智能技术，为用户提供全方位的拍照辅助功能。
+                        从场景识别到姿势指导，从光线优化到构图建议，让普通用户也能轻松拍出专业级照片。
+                    </p>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">核心功能</h3>
+                    <ul class="feature-list text-gray-600 mb-6">
+                        <li>智能场景识别与参数优化</li>
+                        <li>实时姿势推荐与指导</li>
+                        <li>专业摄影师远程帮拍</li>
+                        <li>AI构图辅助</li>
+                        <li>多场景模板库</li>
+                        <li>智能修图与优化</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">技术特点</h3>
+                    <ul class="feature-list text-gray-600">
+                        <li>iOS设计规范</li>
+                        <li>响应式布局</li>
+                        <li>实时AI分析</li>
+                        <li>多模态交互</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 项目亮点 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="text-blue-500 text-3xl mb-4">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">智能场景</h3>
+                    <p class="text-gray-600">自动识别场景并优化参数</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="text-green-500 text-3xl mb-4">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">姿势指导</h3>
+                    <p class="text-gray-600">AI实时姿势分析与建议</p>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <div class="text-purple-500 text-3xl mb-4">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">远程帮拍</h3>
+                    <p class="text-gray-600">专业摄影师在线指导</p>
+                </div>
+            </div>
+
+            <!-- 项目链接 -->
+            <div class="text-center">
+                <a href="../picture/index.html"
+                    class="inline-block bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition-colors">
+                    查看完整演示
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-white border-t mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center text-gray-600">
+                <p>© 2024 我的作品集. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.onload = function () {
+            var iframe = document.getElementById('demoFrame');
+            if (iframe) {
+                iframe.onload = function () {
+                    try {
+                        var doc = iframe.contentDocument ? iframe.contentDocument : iframe.contentWindow.document;
+                        iframe.style.height = doc.body.scrollHeight + 'px';
+                    } catch (e) { }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
