@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>老年人AI回忆录小程序原型</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .phone-frame {
+            width: 360px;
+            height: 640px;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border: 10px solid #333;
+            position: relative;
+            background: white;
+        }
+
+        .iframe-container {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .feature-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #EF4444;
+            color: white;
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen p-8">
+    <div class="container mx-auto">
+        <h1 class="text-3xl font-bold mb-8 text-center">老年人AI回忆录小程序原型</h1>
+        <p class="text-lg mb-8 text-center">为老年人设计的AI回忆录小程序原型，提供简单直观的用户体验</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- 首页 -->
+            <div class="flex flex-col items-center">
+                <h2 class="text-xl font-semibold mb-4">首页 - 引导与快速入口</h2>
+                <div class="phone-frame">
+                    <iframe src="home.html" class="iframe-container"></iframe>
+                </div>
+            </div>
+
+            <!-- AI智能引导浮层 - 新增 -->
+            <div class="flex flex-col items-center">
+                <h2 class="text-xl font-semibold mb-4">首页智能引导浮层 - 展开模式</h2>
+                <div class="phone-frame relative">
+                    <iframe src="ai-chat.html" class="iframe-container"></iframe>
+                </div>
+                <div class="mt-4 text-sm text-gray-600 max-w-xs">
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>展示类似微信的聊天界面，让老年人更容易理解</li>
+                        <li>支持视频通话记录展示，方便回顾家人联系情况</li>
+                        <li>直观清晰的时间标记，一目了然通话历史</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 上传材料页 -->
+            <div class="flex flex-col items-center">
+                <h2 class="text-xl font-semibold mb-4">上传材料页 - 分步引导</h2>
+                <div class="phone-frame">
+                    <iframe src="upload.html" class="iframe-container"></iframe>
+                </div>
+            </div>
+
+            <!-- 时间线编辑页 -->
+            <div class="flex flex-col items-center">
+                <h2 class="text-xl font-semibold mb-4">时间线编辑页 - 可视化操作</h2>
+                <div class="phone-frame">
+                    <iframe src="timeline.html" class="iframe-container"></iframe>
+                </div>
+            </div>
+
+            <!-- AI创作模板页 -->
+            <div class="flex flex-col items-center">
+                <h2 class="text-xl font-semibold mb-4">AI创作模板页 - 风格选择</h2>
+                <div class="phone-frame">
+                    <iframe src="templates.html" class="iframe-container"></iframe>
+                </div>
+            </div>
+
+            <!-- 数字人定制页 -->
+            <div class="flex flex-col items-center">
+                <h2 class="text-xl font-semibold mb-4">数字人定制页 - 形象生成</h2>
+                <div class="phone-frame">
+                    <iframe src="avatar.html" class="iframe-container"></iframe>
+                </div>
+            </div>
+
+            <!-- 导出与分享页 -->
+            <div class="flex flex-col items-center">
+                <h2 class="text-xl font-semibold mb-4">导出与分享页 - 成果交付</h2>
+                <div class="phone-frame">
+                    <iframe src="export.html" class="iframe-container"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

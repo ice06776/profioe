@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人关系小助手 - 原型预览</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #fff;
+            font-family: "SF Pro Text", "SF Pro Icons", "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        .device-frame {
+            width: 390px;
+            height: 844px;
+            border-radius: 55px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            background-color: #fff;
+            border: 1px solid #e5e7eb;
+        }
+
+        .device-screen {
+            width: 100%;
+            height: 100%;
+            border-radius: 45px;
+            overflow: hidden;
+            background-color: #fff;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        h2 {
+            color: #515151;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body style="background-color:#fff;" class="p-8">
+    <header class="max-w-7xl mx-auto mb-8">
+        <h1 class="text-3xl font-bold text-gray-900">个人关系小助手 - 原型设计</h1>
+        <p class="text-gray-600 mt-2">iOS风格小程序设计原型，按照苹果设计规范实现</p>
+    </header>
+
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <!-- 关系库页面 -->
+        <div class="flex flex-col items-center">
+            <div class="device-frame mb-4">
+                <div class="device-screen">
+                    <iframe src="relationship.html" title="关系库"></iframe>
+                </div>
+            </div>
+            <h2 class="text-xl">关系库</h2>
+            <p class="text-gray-600 text-center mt-1">展示所有联系人及关系图谱</p>
+        </div>
+
+        <!-- 联系人详情页 -->
+        <div class="flex flex-col items-center">
+            <div class="device-frame mb-4">
+                <div class="device-screen">
+                    <iframe src="contact-detail.html" title="联系人详情"></iframe>
+                </div>
+            </div>
+            <h2 class="text-xl">联系人详情</h2>
+            <p class="text-gray-600 text-center mt-1">单个联系人的完整信息管理</p>
+        </div>
+
+        <!-- 信息录入页 -->
+        <div class="flex flex-col items-center">
+            <div class="device-frame mb-4">
+                <div class="device-screen">
+                    <iframe src="add-contact.html" title="信息录入"></iframe>
+                </div>
+            </div>
+            <h2 class="text-xl">信息录入</h2>
+            <p class="text-gray-600 text-center mt-1">添加或修改联系人数据</p>
+        </div>
+
+        <!-- 提醒中心页 -->
+        <div class="flex flex-col items-center">
+            <div class="device-frame mb-4">
+                <div class="device-screen">
+                    <iframe src="reminders.html" title="提醒中心"></iframe>
+                </div>
+            </div>
+            <h2 class="text-xl">提醒中心</h2>
+            <p class="text-gray-600 text-center mt-1">聚合所有待处理事件的提醒</p>
+        </div>
+
+        <!-- 我的页面 -->
+        <div class="flex flex-col items-center">
+            <div class="device-frame mb-4">
+                <div class="device-screen">
+                    <iframe src="profile.html" title="我的"></iframe>
+                </div>
+            </div>
+            <h2 class="text-xl">我的</h2>
+            <p class="text-gray-600 text-center mt-1">个人设置与高级功能</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

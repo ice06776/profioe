@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI智能拍照 - 作品集</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .project-header {
+            background: linear-gradient(135deg, #007AFF 0%, #00C6FF 100%);
+            color: white;
+            padding: 60px 0;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .preview-frame {
+            width: 375px;
+            height: 812px;
+            background: #fff;
+            border-radius: 40px;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            overflow: hidden;
+        }
+
+        .device-screen {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .status-bar {
+            height: 44px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            font-size: 14px;
+            color: #000;
+        }
+
+        .nav-bar {
+            height: 56px;
+            background: #fff;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #8E8E93;
+        }
+
+        .nav-item.active {
+            color: #007AFF;
+        }
+
+        .nav-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+        .nav-text {
+            font-size: 12px;
+        }
+
+        iframe {
+            width: 100%;
+            height: calc(100% - 100px);
+            border: none;
+        }
+
+        .tech-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            background: rgba(0, 122, 255, 0.1);
+            color: #007AFF;
+            border-radius: 16px;
+            margin: 4px;
+            font-size: 14px;
+        }
+
+        .tech-tag i {
+            margin-right: 6px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- 项目头部 -->
+    <div class="project-header">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl font-bold mb-4">AI智能拍照</h1>
+            <p class="text-xl opacity-90">基于人工智能的智能拍照助手，让每个人都能拍出专业级照片</p>
+        </div>
+    </div>
+
+    <!-- 项目概述 -->
+    <div class="container mx-auto px-4 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+                <h2 class="text-2xl font-bold mb-6">项目概述</h2>
+                <p class="text-gray-600 mb-4">
+                    AI智能拍照是一款革命性的拍照应用，它利用先进的人工智能技术，为用户提供全方位的拍照辅助功能。
+                    从场景识别到姿势指导，从光线优化到构图建议，让普通用户也能轻松拍出专业级照片。
+                </p>
+                <p class="text-gray-600">
+                    本项目采用现代化的UI设计，结合iOS设计规范，打造出流畅、直观的用户体验。
+                    通过实时AI分析，为用户提供即时反馈和优化建议，让拍照过程变得更加智能和有趣。
+                </p>
+            </div>
+            <div class="flex justify-center">
+                <div class="preview-frame">
+                    <div class="device-screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-signal"></i>
+                                <i class="fas fa-wifi"></i>
+                                <i class="fas fa-battery-full"></i>
+                            </div>
+                        </div>
+                        <iframe src="pages/home.html"></iframe>
+                        <div class="nav-bar">
+                            <div class="nav-item active">
+                                <i class="fas fa-camera nav-icon"></i>
+                                <span class="nav-text">拍摄</span>
+                            </div>
+                            <div class="nav-item">
+                                <i class="fas fa-video nav-icon"></i>
+                                <span class="nav-text">视频</span>
+                            </div>
+                            <div class="nav-item">
+                                <i class="fas fa-th-large nav-icon"></i>
+                                <span class="nav-text">模板</span>
+                            </div>
+                            <div class="nav-item">
+                                <i class="fas fa-user nav-icon"></i>
+                                <span class="nav-text">姿势</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 核心功能 -->
+    <div class="bg-white py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-12 text-center">核心功能</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="feature-card">
+                    <div class="text-blue-500 text-3xl mb-4">
+                        <i class="fas fa-magic"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">智能场景识别</h3>
+                    <p class="text-gray-600">
+                        实时识别拍摄场景，自动调整相机参数，确保最佳拍摄效果。支持人像、风景、美食等多种场景模式。
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="text-blue-500 text-3xl mb-4">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">姿势推荐引擎</h3>
+                    <p class="text-gray-600">
+                        通过AI分析当前场景，推荐最适合的拍摄姿势，并提供实时姿势指导，让照片更加自然生动。
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="text-blue-500 text-3xl mb-4">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">视频帮拍</h3>
+                    <p class="text-gray-600">
+                        专业摄影师远程指导拍摄，实时语音反馈，让用户轻松拍出专业级照片和视频。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 技术特点 -->
+    <div class="container mx-auto px-4 py-16">
+        <h2 class="text-2xl font-bold mb-8 text-center">技术特点</h2>
+        <div class="flex flex-wrap justify-center">
+            <div class="tech-tag">
+                <i class="fab fa-html5"></i>
+                <span>HTML5</span>
+            </div>
+            <div class="tech-tag">
+                <i class="fab fa-css3-alt"></i>
+                <span>CSS3</span>
+            </div>
+            <div class="tech-tag">
+                <i class="fab fa-js"></i>
+                <span>JavaScript</span>
+            </div>
+            <div class="tech-tag">
+                <i class="fab fa-tailwind"></i>
+                <span>Tailwind CSS</span>
+            </div>
+            <div class="tech-tag">
+                <i class="fas fa-mobile-alt"></i>
+                <span>响应式设计</span>
+            </div>
+            <div class="tech-tag">
+                <i class="fas fa-paint-brush"></i>
+                <span>iOS设计规范</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 项目预览 -->
+    <div class="bg-gray-50 py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl font-bold mb-12 text-center">项目预览</h2>
+            <div class="flex flex-wrap justify-center">
+                <div class="preview-frame">
+                    <div class="device-screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-signal"></i>
+                                <i class="fas fa-wifi"></i>
+                                <i class="fas fa-battery-full"></i>
+                            </div>
+                        </div>
+                        <iframe src="pages/video.html"></iframe>
+                        <div class="nav-bar">
+                            <div class="nav-item">
+                                <i class="fas fa-camera nav-icon"></i>
+                                <span class="nav-text">拍摄</span>
+                            </div>
+                            <div class="nav-item active">
+                                <i class="fas fa-video nav-icon"></i>
+                                <span class="nav-text">视频</span>
+                            </div>
+                            <div class="nav-item">
+                                <i class="fas fa-th-large nav-icon"></i>
+                                <span class="nav-text">模板</span>
+                            </div>
+                            <div class="nav-item">
+                                <i class="fas fa-user nav-icon"></i>
+                                <span class="nav-text">姿势</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-frame">
+                    <div class="device-screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-signal"></i>
+                                <i class="fas fa-wifi"></i>
+                                <i class="fas fa-battery-full"></i>
+                            </div>
+                        </div>
+                        <iframe src="pages/templates.html"></iframe>
+                        <div class="nav-bar">
+                            <div class="nav-item">
+                                <i class="fas fa-camera nav-icon"></i>
+                                <span class="nav-text">拍摄</span>
+                            </div>
+                            <div class="nav-item">
+                                <i class="fas fa-video nav-icon"></i>
+                                <span class="nav-text">视频</span>
+                            </div>
+                            <div class="nav-item active">
+                                <i class="fas fa-th-large nav-icon"></i>
+                                <span class="nav-text">模板</span>
+                            </div>
+                            <div class="nav-item">
+                                <i class="fas fa-user nav-icon"></i>
+                                <span class="nav-text">姿势</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-frame">
+                    <div class="device-screen">
+                        <div class="status-bar">
+                            <span>9:41</span>
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-signal"></i>
+                                <i class="fas fa-wifi"></i>
+                                <i class="fas fa-battery-full"></i>
+                            </div>
+                        </div>
+                        <iframe src="pages/pose.html"></iframe>
+                        <div class="nav-bar">
+                            <div class="nav-item">
+                                <i class="fas fa-camera nav-icon"></i>
+                                <span class="nav-text">拍摄</span>
+                            </div>
+                            <div class="nav-item">
+                                <i class="fas fa-video nav-icon"></i>
+                                <span class="nav-text">视频</span>
+                            </div>
+                            <div class="nav-item">
+                                <i class="fas fa-th-large nav-icon"></i>
+                                <span class="nav-text">模板</span>
+                            </div>
+                            <div class="nav-item active">
+                                <i class="fas fa-user nav-icon"></i>
+                                <span class="nav-text">姿势</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

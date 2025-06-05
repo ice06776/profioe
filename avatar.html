@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字人定制 - AI回忆录</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            touch-action: manipulation;
+        }
+
+        .status-bar {
+            height: 40px;
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .tab-bar {
+            height: 50px;
+            background-color: #f8f8f8;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .avatar-preview {
+            width: 100%;
+            height: 50vh;
+            background-color: #f3f4f6;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .avatar-action {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+
+        .avatar-action button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider-container {
+            margin: 20px 0;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: #E5E7EB;
+            outline: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #3B82F6;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .record-btn {
+            background-color: #EF4444;
+            color: white;
+            border-radius: 50px;
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .record-btn:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 h-screen flex flex-col">
+    <!-- 微信小程序状态栏 -->
+    <div class="status-bar flex items-center justify-between px-4">
+        <div>
+            <span class="text-sm font-medium">AI回忆录</span>
+        </div>
+        <div>
+            <span class="text-xs">14:25</span>
+        </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <div class="flex-1 overflow-y-auto px-4 py-6 pb-20">
+        <h1 class="text-2xl font-bold mb-6 text-center">数字人定制</h1>
+        <p class="text-sm text-gray-500 mb-6 text-center">创建您的专属数字人形象，为回忆录增添生动感</p>
+
+        <!-- 3D预览窗口 -->
+        <div class="avatar-preview mb-6">
+            <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80"
+                alt="虚拟形象" class="w-full h-full object-cover">
+            <div class="avatar-action">
+                <button>
+                    <i class="fas fa-undo-alt"></i>
+                </button>
+                <button>
+                    <i class="fas fa-redo-alt"></i>
+                </button>
+                <button>
+                    <i class="fas fa-search-plus"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 属性调整面板 -->
+        <div class="bg-white rounded-xl p-5 shadow-sm mb-8">
+            <div class="text-lg font-semibold mb-4">形象调整</div>
+
+            <!-- 年龄滑块 -->
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span class="text-sm font-medium">年龄</span>
+                    <span class="text-sm text-gray-500">65岁</span>
+                </div>
+                <input type="range" min="20" max="90" value="65" class="slider" id="age-slider">
+            </div>
+
+            <!-- 发型滑块 -->
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span class="text-sm font-medium">发型</span>
+                    <span class="text-sm text-gray-500">短发</span>
+                </div>
+                <input type="range" min="1" max="5" value="2" class="slider" id="hair-slider">
+            </div>
+
+            <!-- 服装滑块 -->
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span class="text-sm font-medium">服装</span>
+                    <span class="text-sm text-gray-500">正装</span>
+                </div>
+                <input type="range" min="1" max="5" value="3" class="slider" id="clothes-slider">
+            </div>
+
+            <!-- 表情滑块 -->
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span class="text-sm font-medium">表情</span>
+                    <span class="text-sm text-gray-500">微笑</span>
+                </div>
+                <input type="range" min="1" max="5" value="4" class="slider" id="expression-slider">
+            </div>
+
+            <!-- 形象性别选择 -->
+            <div class="mt-6 mb-2">
+                <div class="text-sm font-medium mb-2">性别</div>
+                <div class="flex gap-4">
+                    <button class="flex-1 py-2 bg-blue-50 border border-blue-200 rounded-lg text-blue-600 font-medium">
+                        男性
+                    </button>
+                    <button class="flex-1 py-2 bg-gray-100 border border-gray-200 rounded-lg text-gray-500 font-medium">
+                        女性
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 音色录制入口 -->
+        <div class="bg-white rounded-xl p-5 shadow-sm mb-8">
+            <div class="text-lg font-semibold mb-4">音色录制</div>
+            <p class="text-sm text-gray-500 mb-4">录制1分钟语音，AI将为您生成相似的数字人声音</p>
+            <button class="record-btn w-full flex items-center justify-center">
+                <i class="fas fa-microphone mr-2"></i>
+                录制语音
+            </button>
+        </div>
+
+        <!-- 生成按钮 -->
+        <div class="px-4 mb-20">
+            <button class="w-full bg-blue-500 text-white font-bold py-4 rounded-xl text-xl shadow-md">
+                生成我的数字人
+            </button>
+        </div>
+    </div>
+
+    <!-- 微信小程序底部导航栏 -->
+    <div class="tab-bar flex justify-around items-center">
+        <div class="flex flex-col items-center">
+            <i class="fas fa-home text-gray-400"></i>
+            <span class="text-xs text-gray-400">首页</span>
+        </div>
+        <div class="flex flex-col items-center">
+            <i class="fas fa-book text-blue-500"></i>
+            <span class="text-xs text-blue-500">回忆录</span>
+        </div>
+        <div class="flex flex-col items-center">
+            <i class="fas fa-user text-gray-400"></i>
+            <span class="text-xs text-gray-400">我的</span>
+        </div>
+    </div>
+</body>
+
+</html>

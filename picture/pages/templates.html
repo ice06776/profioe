@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>场景模板库</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .scene-sphere {
+            width: 280px;
+            height: 280px;
+            position: relative;
+            perspective: 1000px;
+            margin: 40px auto;
+        }
+
+        .sphere-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotate 20s infinite linear;
+        }
+
+        .sphere-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            overflow: hidden;
+            backface-visibility: hidden;
+        }
+
+        .sphere-face img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotateY(0deg) rotateX(0deg);
+            }
+
+            to {
+                transform: rotateY(360deg) rotateX(360deg);
+            }
+        }
+
+        .match-progress {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            margin: 20px auto;
+        }
+
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+
+        .progress-ring-circle {
+            fill: none;
+            stroke: #007AFF;
+            stroke-width: 8;
+            stroke-dasharray: 565;
+            stroke-dashoffset: 56.5;
+            transition: stroke-dashoffset 0.3s;
+        }
+
+        .filter-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            background: rgba(0, 122, 255, 0.1);
+            color: #007AFF;
+            border-radius: 20px;
+            margin: 4px;
+            font-size: 14px;
+        }
+
+        .filter-tag.active {
+            background: #007AFF;
+            color: white;
+        }
+
+        .filter-tag i {
+            margin-right: 6px;
+        }
+    </style>
+</head>
+
+<body class="bg-white">
+    <!-- 顶部标题 -->
+    <div class="fixed top-0 left-0 right-0 bg-white border-b border-gray-200 p-4 z-50">
+        <h1 class="text-xl font-semibold text-center">场景模板库</h1>
+    </div>
+
+    <!-- 3D场景球 -->
+    <div class="scene-sphere">
+        <div class="sphere-container">
+            <div class="sphere-face" style="transform: rotateY(0deg) translateZ(140px)">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="风景">
+            </div>
+            <div class="sphere-face" style="transform: rotateY(90deg) translateZ(140px)">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f" alt="人像">
+            </div>
+            <div class="sphere-face" style="transform: rotateY(180deg) translateZ(140px)">
+                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836" alt="美食">
+            </div>
+            <div class="sphere-face" style="transform: rotateY(270deg) translateZ(140px)">
+                <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32" alt="建筑">
+            </div>
+        </div>
+    </div>
+
+    <!-- 智能匹配进度 -->
+    <div class="match-progress">
+        <svg class="progress-ring">
+            <circle class="progress-ring-circle" cx="100" cy="100" r="90" />
+        </svg>
+        <div class="absolute inset-0 flex items-center justify-center">
+            <div class="text-center">
+                <div class="text-3xl font-bold text-blue-500">90%</div>
+                <div class="text-sm text-gray-500">匹配度</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模板维度筛选器 -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
+        <div class="text-sm font-medium text-gray-500 mb-2">筛选条件</div>
+        <div class="flex flex-wrap">
+            <div class="filter-tag active">
+                <i class="fas fa-sun"></i>
+                <span>自然光</span>
+            </div>
+            <div class="filter-tag">
+                <i class="fas fa-moon"></i>
+                <span>夜景</span>
+            </div>
+            <div class="filter-tag">
+                <i class="fas fa-mobile-alt"></i>
+                <span>iPhone 13</span>
+            </div>
+            <div class="filter-tag">
+                <i class="fas fa-clock"></i>
+                <span>黄金时段</span>
+            </div>
+            <div class="filter-tag">
+                <i class="fas fa-cloud"></i>
+                <span>阴天</span>
+            </div>
+            <div class="filter-tag">
+                <i class="fas fa-bolt"></i>
+                <span>闪光灯</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>我的 - 个人关系小助手</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .profile-header {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 30px 20px;
+            border-radius: 0 0 30px 30px;
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .profile-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            object-fit: cover;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .menu-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background-color: rgba(106, 158, 207, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: var(--color-primary);
+        }
+
+        .menu-item-special {
+            background-color: rgba(106, 158, 207, 0.05);
+        }
+
+        .menu-icon-special {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .switch-toggle {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 28px;
+        }
+
+        .switch-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .switch-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #BFBAB4;
+            border-radius: 28px;
+            transition: .4s;
+        }
+
+        .switch-slider:before {
+            position: absolute;
+            content: "";
+            height: 24px;
+            width: 24px;
+            left: 3px;
+            bottom: 2px;
+            background-color: white;
+            border-radius: 50%;
+            transition: .4s;
+        }
+
+        input:checked+.switch-slider {
+            background-color: var(--color-success);
+        }
+
+        input:checked+.switch-slider:before {
+            transform: translateX(21px);
+        }
+
+        .section-title {
+            font-size: 14px;
+            color: var(--color-secondary);
+            padding: 0 16px;
+            margin: 20px 0 10px;
+        }
+
+        .version-info {
+            text-align: center;
+            font-size: 12px;
+            color: var(--color-secondary);
+            margin-top: 30px;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 状态栏 -->
+    <div class="status-bar">
+        <div class="text-center">我的</div>
+        <div class="absolute right-4">
+            <i class="fas fa-cog text-primary"></i>
+        </div>
+    </div>
+
+    <!-- 个人信息头部 -->
+    <div class="profile-header">
+        <div class="flex items-center">
+            <img src="https://randomuser.me/api/portraits/men/1.jpg" class="profile-avatar mr-4">
+            <div>
+                <div class="text-xl font-medium mb-1">陈先生</div>
+                <div class="text-sm opacity-80">ID: 12345678</div>
+            </div>
+        </div>
+        <div class="absolute right-4 top-4">
+            <button class="px-3 py-1 bg-white bg-opacity-20 rounded-full text-sm">
+                编辑资料
+            </button>
+        </div>
+    </div>
+
+    <!-- 页面主内容 -->
+    <div class="main-content">
+        <!-- 会员信息卡片 -->
+        <div class="card flex items-center justify-between">
+            <div>
+                <div class="flex items-center">
+                    <i class="fas fa-crown text-yellow-400 mr-2"></i>
+                    <span class="font-medium">专业版会员</span>
+                </div>
+                <div class="text-xs text-secondary mt-1">有效期至：2023年12月31日</div>
+            </div>
+            <button class="px-3 py-1 border border-primary text-primary rounded-full text-sm">
+                续费
+            </button>
+        </div>
+
+        <!-- 功能菜单 -->
+        <div class="section-title">常用功能</div>
+        <div class="card p-0">
+            <div class="menu-item">
+                <div class="menu-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="font-medium text-sm">关系分析报告</div>
+                    <div class="text-xs text-secondary mt-1">查看您的人际关系网络分析</div>
+                </div>
+                <i class="fas fa-chevron-right text-secondary text-xs"></i>
+            </div>
+
+            <div class="menu-item menu-item-special">
+                <div class="menu-icon menu-icon-special">
+                    <i class="fas fa-magic"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="font-medium text-sm">AI关系助手</div>
+                    <div class="text-xs text-secondary mt-1">智能分析并提供互动建议</div>
+                </div>
+                <div class="text-xs text-primary px-2 py-1 bg-primary bg-opacity-10 rounded-full">新功能</div>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="font-medium text-sm">日历同步</div>
+                    <div class="text-xs text-secondary mt-1">与系统日历同步重要日期</div>
+                </div>
+                <label class="switch-toggle">
+                    <input type="checkbox" checked>
+                    <span class="switch-slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <!-- 数据与隐私 -->
+        <div class="section-title">数据与隐私</div>
+        <div class="card p-0">
+            <div class="menu-item">
+                <div class="menu-icon" style="background-color: rgba(230, 168, 161, 0.1); color: var(--color-danger);">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="font-medium text-sm">隐私设置</div>
+                    <div class="text-xs text-secondary mt-1">管理健康信息等隐私内容</div>
+                </div>
+                <i class="fas fa-chevron-right text-secondary text-xs"></i>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-icon" style="background-color: rgba(179, 160, 201, 0.1); color: #B3A0C9;">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="font-medium text-sm">备份与恢复</div>
+                    <div class="text-xs text-secondary mt-1">云端备份，设备间同步数据</div>
+                </div>
+                <i class="fas fa-chevron-right text-secondary text-xs"></i>
+            </div>
+        </div>
+
+        <!-- 关于与支持 -->
+        <div class="section-title">关于与支持</div>
+        <div class="card p-0">
+            <div class="menu-item">
+                <div class="menu-icon" style="background-color: rgba(140, 194, 160, 0.1); color: var(--color-success);">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="font-medium text-sm">客服与反馈</div>
+                    <div class="text-xs text-secondary mt-1">问题反馈，获取帮助</div>
+                </div>
+                <i class="fas fa-chevron-right text-secondary text-xs"></i>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-icon" style="background-color: rgba(240, 209, 151, 0.1); color: var(--color-warning);">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="font-medium text-sm">去评分</div>
+                    <div class="text-xs text-secondary mt-1">喜欢我们的应用吗？给个好评吧</div>
+                </div>
+                <i class="fas fa-chevron-right text-secondary text-xs"></i>
+            </div>
+
+            <div class="menu-item">
+                <div class="menu-icon"
+                    style="background-color: rgba(161, 155, 150, 0.1); color: var(--color-secondary);">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="font-medium text-sm">关于我们</div>
+                    <div class="text-xs text-secondary mt-1">了解开发团队和应用理念</div>
+                </div>
+                <i class="fas fa-chevron-right text-secondary text-xs"></i>
+            </div>
+        </div>
+
+        <div class="version-info">
+            个人关系小助手 v1.0.1
+        </div>
+    </div>
+
+    <!-- 底部导航栏 -->
+    <div class="tab-bar">
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-users"></i></div>
+            <div class="tab-text">关系库</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-bell"></i></div>
+            <div class="tab-text">提醒</div>
+        </div>
+        <div class="tab-item active">
+            <div class="tab-icon"><i class="fas fa-user"></i></div>
+            <div class="tab-text">我的</div>
+        </div>
+    </div>
+</body>
+
+</html>

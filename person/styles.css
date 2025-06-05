@@ -1,0 +1,398 @@
+/* iOS样式主题 */
+:root {
+    /* 颜色系统 - 白色系 */
+    --color-primary: #007AFF;
+    /* iOS蓝 */
+    --color-secondary: #8E8E93;
+    /* iOS灰 */
+    --color-success: #34C759;
+    /* iOS绿 */
+    --color-warning: #FF9500;
+    /* iOS橙 */
+    --color-danger: #FF3B30;
+    /* iOS红 */
+    --color-background: #FFFFFF;
+    /* 纯白 */
+    --color-card-bg: #FFFFFF;
+    /* 纯白 */
+    --color-text-primary: #000000;
+    /* 纯黑 */
+    --color-text-secondary: rgba(0, 0, 0, 0.6);
+    /* 半透明黑 */
+    --color-border: rgba(0, 0, 0, 0.1);
+    /* 浅灰边框 */
+
+    /* 间距系统 */
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+
+    /* 圆角系统 */
+    --radius-card: 12px;
+    --radius-button: 8px;
+    --radius-full: 9999px;
+}
+
+/* 基础样式 */
+body {
+    font-family: "PingFang SC", "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+}
+
+/* 微信小程序状态栏 */
+.status-bar {
+    height: 44px;
+    width: 100%;
+    background-color: var(--color-background);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 17px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+/* 底部导航栏 */
+.tab-bar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 56px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border-top: 1px solid var(--color-border);
+    z-index: 50;
+}
+
+.tab-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    height: 100%;
+    color: var(--color-secondary);
+    transition: color 0.2s ease;
+}
+
+.tab-item.active {
+    color: var(--color-primary);
+}
+
+.tab-icon {
+    font-size: 22px;
+    margin-bottom: 2px;
+}
+
+.tab-text {
+    font-size: 10px;
+}
+
+/* 搜索栏 */
+.search-bar {
+    height: 36px;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    margin: 8px 16px;
+}
+
+.search-bar i {
+    color: var(--color-secondary);
+    margin-right: 6px;
+}
+
+.search-input {
+    border: none;
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    color: var(--color-text-primary);
+    font-size: 16px;
+}
+
+.search-input::placeholder {
+    color: var(--color-secondary);
+}
+
+/* 卡片样式 */
+.card {
+    background-color: var(--color-card-bg);
+    border-radius: var(--radius-card);
+    padding: var(--space-4);
+    margin-bottom: var(--space-4);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* 按钮样式 */
+.btn {
+    height: 44px;
+    border-radius: var(--radius-button);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0 16px;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+/* 悬浮按钮 */
+.float-btn {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+    z-index: 40;
+    font-size: 24px;
+}
+
+/* 主内容区域 */
+.main-content {
+    padding: 16px;
+    padding-bottom: 72px;
+    /* 为底部导航留出空间 */
+}
+
+/* 标签栏 */
+.tags-scroll {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 8px 16px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.tags-scroll::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, Edge */
+}
+
+.tag {
+    display: inline-block;
+    padding: 6px 14px;
+    background-color: rgba(0, 122, 255, 0.1);
+    color: var(--color-primary);
+    border-radius: var(--radius-full);
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+.tag.active {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+/* 列表项样式 */
+.list-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-background);
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    object-fit: cover;
+    margin-right: 12px;
+}
+
+.avatar-sm {
+    width: 36px;
+    height: 36px;
+}
+
+.avatar-lg {
+    width: 64px;
+    height: 64px;
+}
+
+/* 信息展示 */
+.info-section {
+    margin-bottom: 20px;
+}
+
+.info-title {
+    font-size: 14px;
+    color: var(--color-secondary);
+    margin-bottom: 8px;
+}
+
+.info-content {
+    font-size: 16px;
+    color: var(--color-text-primary);
+}
+
+/* 语音输入波浪动画 */
+.voice-wave {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+}
+
+.wave-bar {
+    width: 4px;
+    height: 20px;
+    margin: 0 2px;
+    background-color: var(--color-primary);
+    border-radius: 2px;
+    animation: wave 1s infinite ease-in-out;
+}
+
+.wave-bar:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.wave-bar:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.wave-bar:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.wave-bar:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+@keyframes wave {
+
+    0%,
+    100% {
+        height: 20px;
+    }
+
+    50% {
+        height: 40px;
+    }
+}
+
+/* 时间轴 */
+.timeline {
+    position: relative;
+    padding-left: 20px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--color-border);
+}
+
+.timeline-item {
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+}
+
+/* 关系图谱 */
+.graph-container {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 加载指示器 */
+.loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+}
+
+.loading-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(0, 122, 255, 0.3);
+    /* iOS蓝半透明 */
+    border-radius: 50%;
+    border-top-color: var(--color-primary);
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* 深色模式适配 */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-primary: #7BABD5;
+        /* 亮一点的iOS蓝 */
+        --color-background: #F2F0EC;
+        /* 保持纯白 */
+        --color-card-bg: #F8F6F2;
+        /* 保持纯黑 */
+        --color-text-primary: #515151;
+        /* 保持纯黑 */
+        --color-text-secondary: rgba(81, 81, 81, 0.6);
+        /* 保持半透明黑 */
+        --color-border: rgba(161, 155, 150, 0.15);
+        /* 保持浅灰边框 */
+    }
+
+    .tab-bar {
+        background-color: rgba(242, 240, 236, 0.95);
+        /* 保持纯白半透明 */
+    }
+}

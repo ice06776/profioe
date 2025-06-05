@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI创作模板 - AI回忆录</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            touch-action: manipulation;
+        }
+
+        .status-bar {
+            height: 40px;
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .tab-bar {
+            height: 50px;
+            background-color: #f8f8f8;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .template-card {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .template-card:active {
+            transform: scale(0.98);
+        }
+
+        .selected-template {
+            position: relative;
+        }
+
+        .selected-template::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 3px solid #3B82F6;
+            border-radius: 16px;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
+        }
+
+        .avatar-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 30px;
+            background-color: #8B5CF6;
+            color: white;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 h-screen flex flex-col">
+    <!-- 微信小程序状态栏 -->
+    <div class="status-bar flex items-center justify-between px-4">
+        <div>
+            <span class="text-sm font-medium">AI回忆录</span>
+        </div>
+        <div>
+            <span class="text-xs">14:25</span>
+        </div>
+    </div>
+
+    <!-- 主内容区 -->
+    <div class="flex-1 overflow-y-auto px-4 py-6 pb-20">
+        <h1 class="text-2xl font-bold mb-6 text-center">AI创作模板</h1>
+
+        <div class="text-lg font-semibold mb-4">选择风格模板</div>
+        <div class="text-sm text-gray-500 mb-6">选择您喜欢的模板风格，AI将根据您的素材自动创建回忆录</div>
+
+        <div class="grid grid-cols-2 gap-4">
+            <!-- 模板1 - 老电影风格 -->
+            <div class="template-card selected-template">
+                <div class="aspect-w-4 aspect-h-3 h-36 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1518544648563-3d99e78d11f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                        alt="老电影风格" class="w-full h-full object-cover">
+                </div>
+                <div class="p-3 bg-white">
+                    <div class="text-sm font-medium">老电影</div>
+                    <div class="text-xs text-gray-500">复古胶片风格，怀旧滤镜</div>
+                </div>
+            </div>
+
+            <!-- 模板2 - 家庭相册 -->
+            <div class="template-card">
+                <div class="aspect-w-4 aspect-h-3 h-36 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                        alt="家庭相册" class="w-full h-full object-cover">
+                </div>
+                <div class="p-3 bg-white">
+                    <div class="text-sm font-medium">家庭相册</div>
+                    <div class="text-xs text-gray-500">温馨温暖的家庭记忆</div>
+                </div>
+            </div>
+
+            <!-- 模板3 - 旅行日记 -->
+            <div class="template-card">
+                <div class="aspect-w-4 aspect-h-3 h-36 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                        alt="旅行日记" class="w-full h-full object-cover">
+                </div>
+                <div class="p-3 bg-white">
+                    <div class="text-sm font-medium">旅行日记</div>
+                    <div class="text-xs text-gray-500">旅途中的精彩瞬间</div>
+                </div>
+            </div>
+
+            <!-- 模板4 - 节日庆典 -->
+            <div class="template-card">
+                <div class="aspect-w-4 aspect-h-3 h-36 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                        alt="节日庆典" class="w-full h-full object-cover">
+                </div>
+                <div class="p-3 bg-white">
+                    <div class="text-sm font-medium">节日庆典</div>
+                    <div class="text-xs text-gray-500">欢乐喜庆的节日氛围</div>
+                </div>
+            </div>
+
+            <!-- 模板5 - 人生故事 -->
+            <div class="template-card">
+                <div class="aspect-w-4 aspect-h-3 h-36 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                        alt="人生故事" class="w-full h-full object-cover">
+                </div>
+                <div class="p-3 bg-white">
+                    <div class="text-sm font-medium">人生故事</div>
+                    <div class="text-xs text-gray-500">讲述您的精彩人生</div>
+                </div>
+            </div>
+
+            <!-- 模板6 - 四季变迁 -->
+            <div class="template-card">
+                <div class="aspect-w-4 aspect-h-3 h-36 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+                        alt="四季变迁" class="w-full h-full object-cover">
+                </div>
+                <div class="p-3 bg-white">
+                    <div class="text-sm font-medium">四季变迁</div>
+                    <div class="text-xs text-gray-500">记录四季更替的美好</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 预览区域 -->
+        <div class="mt-8 mb-10">
+            <div class="text-lg font-semibold mb-4">模板预览</div>
+            <div class="bg-white rounded-xl p-4 shadow-sm">
+                <div class="aspect-w-16 aspect-h-9 h-44 rounded-lg overflow-hidden mb-4">
+                    <img src="https://images.unsplash.com/photo-1518544648563-3d99e78d11f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        alt="老电影预览" class="w-full h-full object-cover">
+                </div>
+                <div class="text-sm mb-3">
+                    <span class="font-medium">老电影风格</span>
+                    <span class="text-gray-500 text-xs ml-2">适合怀旧主题的回忆录</span>
+                </div>
+                <div class="text-xs text-gray-600">
+                    这种风格能够将照片渲染成复古电影的质感，加入胶片颗粒和轻微的色彩偏移，营造出浓厚的怀旧氛围。适合制作家庭历史、成长记录等主题的回忆录。
+                </div>
+            </div>
+        </div>
+
+        <!-- 应用按钮 -->
+        <div class="px-4 mb-20">
+            <button class="w-full bg-blue-500 text-white font-bold py-4 rounded-xl text-xl shadow-md">
+                应用此模板
+            </button>
+        </div>
+
+        <!-- 数字人定制入口 -->
+        <a href="avatar.html" class="avatar-btn">
+            <i class="fas fa-user-circle text-2xl"></i>
+        </a>
+    </div>
+
+    <!-- 微信小程序底部导航栏 -->
+    <div class="tab-bar flex justify-around items-center">
+        <div class="flex flex-col items-center">
+            <i class="fas fa-home text-gray-400"></i>
+            <span class="text-xs text-gray-400">首页</span>
+        </div>
+        <div class="flex flex-col items-center">
+            <i class="fas fa-book text-blue-500"></i>
+            <span class="text-xs text-blue-500">回忆录</span>
+        </div>
+        <div class="flex flex-col items-center">
+            <i class="fas fa-user text-gray-400"></i>
+            <span class="text-xs text-gray-400">我的</span>
+        </div>
+    </div>
+</body>
+
+</html>

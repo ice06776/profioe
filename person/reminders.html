@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>提醒中心 - 个人关系小助手</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .reminder-item {
+            border-radius: var(--radius-card);
+            background-color: var(--color-card-bg);
+            padding: 16px;
+            margin-bottom: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reminder-item-content {
+            transition: transform 0.3s ease;
+        }
+
+        .reminder-actions {
+            position: absolute;
+            top: 0;
+            right: -180px;
+            height: 100%;
+            display: flex;
+            transition: right 0.3s ease;
+        }
+
+        .reminder-action {
+            width: 80px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            font-size: 12px;
+        }
+
+        .reminder-action i {
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .reminder-action-done {
+            background-color: var(--color-success);
+        }
+
+        .reminder-action-skip {
+            background-color: var(--color-secondary);
+        }
+
+        .reminder-item.swiped .reminder-item-content {
+            transform: translateX(-160px);
+        }
+
+        .reminder-item.swiped .reminder-actions {
+            right: 0;
+        }
+
+        .reminder-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            color: white;
+            margin-right: 6px;
+        }
+
+        .reminder-badge-birthday {
+            background-color: var(--color-primary);
+        }
+
+        .reminder-badge-anniversary {
+            background-color: var(--color-warning);
+        }
+
+        .reminder-badge-health {
+            background-color: var(--color-danger);
+        }
+
+        .suggestion-card {
+            border-radius: 16px;
+            background-color: #FBF5E2;
+            border: 1px solid #F5E7C1;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .suggestion-icon {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(240, 209, 151, 0.2);
+            color: #D4B46E;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+        }
+
+        /* 筛选栏 */
+        .filter-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            background-color: var(--color-card-bg);
+            border-radius: 8px;
+            margin-right: 10px;
+            font-size: 13px;
+            color: var(--color-secondary);
+        }
+
+        .filter-item.active {
+            background-color: var(--color-primary);
+            color: white;
+        }
+
+        .filter-item i {
+            margin-right: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 状态栏 -->
+    <div class="status-bar">
+        <div class="text-center">提醒中心</div>
+        <div class="absolute right-4">
+            <i class="fas fa-plus text-primary"></i>
+        </div>
+    </div>
+
+    <!-- 搜索栏 -->
+    <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input type="text" class="search-input" placeholder="搜索提醒">
+    </div>
+
+    <!-- 场景化提示卡片 -->
+    <div class="suggestion-card mx-4 mt-4">
+        <div class="flex">
+            <div class="suggestion-icon">
+                <i class="fas fa-utensils"></i>
+            </div>
+            <div class="flex-1">
+                <div class="text-sm font-medium mb-1">明天与张先生聚餐提醒</div>
+                <div class="text-xs">注意：张先生有海鲜过敏，建议避开以下菜品：虾类、蟹类、贝类</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 筛选栏 -->
+    <div class="flex overflow-x-auto py-3 px-4 no-scrollbar">
+        <div class="filter-item active">
+            <i class="fas fa-list"></i>
+            <span>全部</span>
+        </div>
+        <div class="filter-item">
+            <i class="fas fa-birthday-cake"></i>
+            <span>生日</span>
+        </div>
+        <div class="filter-item">
+            <i class="fas fa-calendar-day"></i>
+            <span>纪念日</span>
+        </div>
+        <div class="filter-item">
+            <i class="fas fa-medkit"></i>
+            <span>健康提醒</span>
+        </div>
+        <div class="filter-item">
+            <i class="fas fa-star"></i>
+            <span>重要事项</span>
+        </div>
+    </div>
+
+    <!-- 页面主内容 -->
+    <div class="main-content">
+        <!-- 今天 -->
+        <div class="mb-5">
+            <div class="text-sm font-medium mb-3">今天</div>
+
+            <div class="reminder-item">
+                <div class="reminder-item-content">
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="avatar-sm mr-3">
+                        <div class="flex-1">
+                            <div class="flex items-center">
+                                <span class="reminder-badge reminder-badge-birthday">生日</span>
+                                <span class="font-medium">李明</span>
+                            </div>
+                            <div class="text-xs text-secondary mt-1">客户关系 • 今天35岁</div>
+                        </div>
+                        <div class="text-xs text-primary">发送祝福</div>
+                    </div>
+                </div>
+                <div class="reminder-actions">
+                    <div class="reminder-action reminder-action-done">
+                        <i class="fas fa-check"></i>
+                        <span>已处理</span>
+                    </div>
+                    <div class="reminder-action reminder-action-skip">
+                        <i class="fas fa-forward"></i>
+                        <span>忽略</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reminder-item swiped">
+                <div class="reminder-item-content">
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" class="avatar-sm mr-3">
+                        <div class="flex-1">
+                            <div class="flex items-center">
+                                <span class="reminder-badge reminder-badge-health">健康提醒</span>
+                                <span class="font-medium">王小红</span>
+                            </div>
+                            <div class="text-xs text-secondary mt-1">朋友 • 花粉过敏季节，送药或问候</div>
+                        </div>
+                        <div class="text-xs text-primary">发送消息</div>
+                    </div>
+                </div>
+                <div class="reminder-actions">
+                    <div class="reminder-action reminder-action-done">
+                        <i class="fas fa-check"></i>
+                        <span>已处理</span>
+                    </div>
+                    <div class="reminder-action reminder-action-skip">
+                        <i class="fas fa-forward"></i>
+                        <span>忽略</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 本周 -->
+        <div class="mb-5">
+            <div class="text-sm font-medium mb-3">本周</div>
+
+            <div class="reminder-item">
+                <div class="reminder-item-content">
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" class="avatar-sm mr-3">
+                        <div class="flex-1">
+                            <div class="flex items-center">
+                                <span class="reminder-badge reminder-badge-birthday">生日</span>
+                                <span class="font-medium">张美丽</span>
+                            </div>
+                            <div class="text-xs text-secondary mt-1">家人 • 妈妈 • 5月12日</div>
+                        </div>
+                        <div class="text-xs text-primary font-medium">还有3天</div>
+                    </div>
+                </div>
+                <div class="reminder-actions">
+                    <div class="reminder-action reminder-action-done">
+                        <i class="fas fa-check"></i>
+                        <span>已处理</span>
+                    </div>
+                    <div class="reminder-action reminder-action-skip">
+                        <i class="fas fa-forward"></i>
+                        <span>忽略</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reminder-item">
+                <div class="reminder-item-content">
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" class="avatar-sm mr-3">
+                        <div class="flex-1">
+                            <div class="flex items-center">
+                                <span class="reminder-badge reminder-badge-anniversary">母亲节</span>
+                                <span class="font-medium">张美丽</span>
+                            </div>
+                            <div class="text-xs text-secondary mt-1">家人 • 妈妈 • 5月14日</div>
+                        </div>
+                        <div class="text-xs text-primary font-medium">还有5天</div>
+                    </div>
+                </div>
+                <div class="reminder-actions">
+                    <div class="reminder-action reminder-action-done">
+                        <i class="fas fa-check"></i>
+                        <span>已处理</span>
+                    </div>
+                    <div class="reminder-action reminder-action-skip">
+                        <i class="fas fa-forward"></i>
+                        <span>忽略</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 本月 -->
+        <div>
+            <div class="text-sm font-medium mb-3">本月</div>
+
+            <div class="reminder-item">
+                <div class="reminder-item-content">
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" class="avatar-sm mr-3">
+                        <div class="flex-1">
+                            <div class="flex items-center">
+                                <span class="reminder-badge reminder-badge-anniversary">工作周年</span>
+                                <span class="font-medium">张伟</span>
+                            </div>
+                            <div class="text-xs text-secondary mt-1">同事 • 入职3周年 • 5月24日</div>
+                        </div>
+                        <div class="text-xs text-primary font-medium">还有15天</div>
+                    </div>
+                </div>
+                <div class="reminder-actions">
+                    <div class="reminder-action reminder-action-done">
+                        <i class="fas fa-check"></i>
+                        <span>已处理</span>
+                    </div>
+                    <div class="reminder-action reminder-action-skip">
+                        <i class="fas fa-forward"></i>
+                        <span>忽略</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reminder-item">
+                <div class="reminder-item-content">
+                    <div class="flex items-center">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="avatar-sm mr-3">
+                        <div class="flex-1">
+                            <div class="flex items-center">
+                                <span class="reminder-badge" style="background-color: #5856D6;">合同到期</span>
+                                <span class="font-medium">李明</span>
+                            </div>
+                            <div class="text-xs text-secondary mt-1">客户 • 服务合同到期 • 5月30日</div>
+                        </div>
+                        <div class="text-xs text-primary font-medium">还有21天</div>
+                    </div>
+                </div>
+                <div class="reminder-actions">
+                    <div class="reminder-action reminder-action-done">
+                        <i class="fas fa-check"></i>
+                        <span>已处理</span>
+                    </div>
+                    <div class="reminder-action reminder-action-skip">
+                        <i class="fas fa-forward"></i>
+                        <span>忽略</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部导航栏 -->
+    <div class="tab-bar">
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-users"></i></div>
+            <div class="tab-text">关系库</div>
+        </div>
+        <div class="tab-item active">
+            <div class="tab-icon"><i class="fas fa-bell"></i></div>
+            <div class="tab-text">提醒</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-user"></i></div>
+            <div class="tab-text">我的</div>
+        </div>
+    </div>
+
+    <script>
+        // 左滑显示操作按钮的演示
+        document.addEventListener('DOMContentLoaded', function () {
+            const reminderItems = document.querySelectorAll('.reminder-item:not(.swiped)');
+
+            reminderItems.forEach(item => {
+                let startX = 0;
+                let currentX = 0;
+
+                item.addEventListener('touchstart', function (e) {
+                    startX = e.touches[0].clientX;
+                }, false);
+
+                item.addEventListener('touchmove', function (e) {
+                    currentX = e.touches[0].clientX;
+                    const diff = startX - currentX;
+
+                    // 只允许左滑
+                    if (diff > 0) {
+                        if (diff <= 160) {
+                            item.querySelector('.reminder-item-content').style.transform = `translateX(-${diff}px)`;
+                            item.querySelector('.reminder-actions').style.right = `-${160 - diff}px`;
+                        }
+                    }
+                }, false);
+
+                item.addEventListener('touchend', function () {
+                    const diff = startX - currentX;
+
+                    if (diff > 80) {
+                        // 如果滑动超过一半，则展开
+                        item.classList.add('swiped');
+                        item.querySelector('.reminder-item-content').style.transform = '';
+                        item.querySelector('.reminder-actions').style.right = '';
+                    } else {
+                        // 否则恢复原状
+                        item.classList.remove('swiped');
+                        item.querySelector('.reminder-item-content').style.transform = '';
+                        item.querySelector('.reminder-actions').style.right = '';
+                    }
+                }, false);
+            });
+
+            // 筛选标签点击事件
+            document.querySelectorAll('.filter-item').forEach(filter => {
+                filter.addEventListener('click', function () {
+                    document.querySelectorAll('.filter-item').forEach(f => {
+                        f.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频帮拍</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: #000;
+        }
+
+        .main-view {
+            width: 60%;
+            height: 100%;
+            position: relative;
+        }
+
+        .guide-view {
+            width: 30%;
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .ar-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 10%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .param-panel {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 16px;
+            color: white;
+        }
+
+        .param-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .param-label {
+            width: 80px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .param-value {
+            flex: 1;
+            font-family: monospace;
+        }
+
+        .voice-wave {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            margin-top: 8px;
+        }
+
+        .wave-bar {
+            width: 3px;
+            height: 20px;
+            background: #007AFF;
+            margin: 0 2px;
+            border-radius: 1.5px;
+            animation: wave 1s infinite ease-in-out;
+        }
+
+        .wave-bar:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .wave-bar:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .wave-bar:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        .wave-bar:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes wave {
+
+            0%,
+            100% {
+                height: 20px;
+            }
+
+            50% {
+                height: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-black">
+    <div class="video-container">
+        <!-- 主视图 -->
+        <div class="main-view">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f" alt="主视图"
+                class="w-full h-full object-cover">
+        </div>
+
+        <!-- 指导视图 -->
+        <div class="guide-view">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f" alt="指导视图"
+                class="w-full h-full object-cover opacity-50">
+            <div class="absolute top-4 left-4 right-4">
+                <div class="bg-black bg-opacity-50 rounded-lg p-3 text-white">
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde" alt="指导者"
+                            class="w-8 h-8 rounded-full mr-2">
+                        <div>
+                            <div class="font-medium">专业摄影师</div>
+                            <div class="text-sm opacity-75">正在指导拍摄</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AR指引层 -->
+        <div class="ar-overlay">
+            <div class="flex items-center justify-between px-4 h-full">
+                <div class="text-white">
+                    <i class="fas fa-arrows-alt text-blue-500 mr-2"></i>
+                    <span>双指缩放调整画面</span>
+                </div>
+                <div class="text-white">
+                    <i class="fas fa-magic text-blue-500 mr-2"></i>
+                    <span>AI构图辅助已开启</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 参数面板 -->
+        <div class="param-panel">
+            <div class="grid grid-cols-2 gap-4">
+                <div class="param-item">
+                    <span class="param-label">光圈</span>
+                    <span class="param-value">f/2.8</span>
+                </div>
+                <div class="param-item">
+                    <span class="param-label">焦距</span>
+                    <span class="param-value">50mm</span>
+                </div>
+                <div class="param-item">
+                    <span class="param-label">ISO</span>
+                    <span class="param-value">100</span>
+                </div>
+                <div class="param-item">
+                    <span class="param-label">白平衡</span>
+                    <span class="param-value">5500K</span>
+                </div>
+            </div>
+
+            <!-- 语音波纹 -->
+            <div class="voice-wave">
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+                <div class="wave-bar"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

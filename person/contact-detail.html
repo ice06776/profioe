@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>联系人详情 - 个人关系小助手</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .contact-header {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 24px 16px;
+            border-radius: 0 0 24px 24px;
+            margin-bottom: 16px;
+        }
+
+        .contact-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            object-fit: cover;
+        }
+
+        .quick-action {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .interest-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            background-color: rgba(106, 158, 207, 0.1);
+            color: var(--color-primary);
+            border-radius: var(--radius-full);
+            margin-right: 6px;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+
+        .interest-tag.dislike {
+            background-color: rgba(230, 168, 161, 0.1);
+            color: var(--color-danger);
+        }
+
+        .edit-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background-color: var(--color-primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(106, 158, 207, 0.3);
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 状态栏 -->
+    <div class="status-bar">
+        <div class="absolute left-4">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="text-center">联系人详情</div>
+    </div>
+
+    <!-- 头部信息区 -->
+    <div class="contact-header">
+        <div class="flex items-center mb-4">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" class="contact-avatar mr-4">
+            <div class="flex-1">
+                <div class="text-2xl font-semibold mb-1">张美丽</div>
+                <div class="flex items-center">
+                    <span class="px-2 py-1 bg-white bg-opacity-20 rounded-full text-xs mr-2">家人</span>
+                    <span class="text-xs text-white text-opacity-90">妈妈</span>
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-center space-x-6 mt-2">
+            <div class="quick-action">
+                <i class="fas fa-comment-dots"></i>
+            </div>
+            <div class="quick-action">
+                <i class="fas fa-phone-alt"></i>
+            </div>
+            <div class="quick-action">
+                <i class="fas fa-video"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页面主内容 -->
+    <div class="main-content pb-20">
+        <!-- 基础信息卡片 -->
+        <div class="card mb-4">
+            <div class="info-section">
+                <div class="info-title">生日</div>
+                <div class="info-content flex items-center">
+                    <span>1965年5月12日</span>
+                    <span class="ml-2 text-xs text-primary px-2 py-1 bg-primary bg-opacity-10 rounded-full">还有12天</span>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <div class="info-title">纪念日</div>
+                <div class="info-content flex items-center">
+                    <span>母亲节 (5月第二个星期日)</span>
+                    <span class="ml-2 text-xs text-primary px-2 py-1 bg-primary bg-opacity-10 rounded-full">还有16天</span>
+                </div>
+            </div>
+
+            <div class="info-section mb-0">
+                <div class="info-title">联系方式</div>
+                <div class="info-content">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center">
+                            <i class="fas fa-phone-alt text-secondary mr-2 w-5 text-center"></i>
+                            <span>138****6789</span>
+                        </div>
+                        <i class="fas fa-copy text-secondary text-sm"></i>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-secondary mr-2 w-5 text-center"></i>
+                            <span>zhang****@example.com</span>
+                        </div>
+                        <i class="fas fa-copy text-secondary text-sm"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 健康档案卡片 -->
+        <div class="card mb-4">
+            <div class="flex justify-between items-center mb-3">
+                <div class="font-medium">健康档案</div>
+                <div class="flex items-center text-xs text-secondary">
+                    <i class="fas fa-lock mr-1"></i>
+                    <span>隐私保护</span>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <div class="info-title">过敏源</div>
+                <div class="info-content text-danger">花粉、海鲜</div>
+            </div>
+
+            <div class="info-section mb-0">
+                <div class="info-title">慢性病史</div>
+                <div class="info-content">高血压 (已服药控制)</div>
+            </div>
+        </div>
+
+        <!-- 兴趣偏好卡片 -->
+        <div class="card mb-4">
+            <div class="font-medium mb-3">兴趣偏好</div>
+
+            <div class="info-section">
+                <div class="info-title">喜欢的事物</div>
+                <div>
+                    <span class="interest-tag">中国画</span>
+                    <span class="interest-tag">太极拳</span>
+                    <span class="interest-tag">园艺</span>
+                    <span class="interest-tag">旅游</span>
+                    <span class="interest-tag">红茶</span>
+                    <span class="interest-tag">古典音乐</span>
+                </div>
+            </div>
+
+            <div class="info-section mb-0">
+                <div class="info-title">不喜欢的事物</div>
+                <div>
+                    <span class="interest-tag dislike">辛辣食物</span>
+                    <span class="interest-tag dislike">噪音</span>
+                    <span class="interest-tag dislike">寒冷天气</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 互动记录卡片 -->
+        <div class="card">
+            <div class="flex justify-between items-center mb-3">
+                <div class="font-medium">互动记录</div>
+                <div class="text-xs text-primary">查看全部</div>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="text-sm font-medium">2023年母亲节祝福</div>
+                    <div class="text-xs text-secondary mt-1">2023年5月14日</div>
+                    <div class="text-sm mt-2 px-3 py-2 bg-gray-100 rounded-lg dark:bg-gray-800">
+                        "妈妈，母亲节快乐！感谢您一直以来的关爱与支持..."
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="text-sm font-medium">生日祝福</div>
+                    <div class="text-xs text-secondary mt-1">2023年5月12日</div>
+                    <div class="text-sm mt-2 px-3 py-2 bg-gray-100 rounded-lg dark:bg-gray-800">
+                        "妈妈，生日快乐！祝您身体健康，每天开心！"
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="text-sm font-medium">视频通话</div>
+                    <div class="text-xs text-secondary mt-1">2023年4月28日</div>
+                    <div class="text-sm mt-2">
+                        通话时长：25分钟
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 编辑按钮 -->
+    <div class="edit-btn">
+        <i class="fas fa-pencil-alt"></i>
+    </div>
+
+    <!-- 底部导航栏 -->
+    <div class="tab-bar">
+        <div class="tab-item active">
+            <div class="tab-icon"><i class="fas fa-users"></i></div>
+            <div class="tab-text">关系库</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-bell"></i></div>
+            <div class="tab-text">提醒</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-user"></i></div>
+            <div class="tab-text">我的</div>
+        </div>
+    </div>
+</body>
+
+</html>

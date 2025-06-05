@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>关系库 - 个人关系小助手</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+    <style>
+        /* 关系图谱特定样式 */
+        .node {
+            cursor: pointer;
+        }
+
+        .node circle {
+            fill: #fff;
+            stroke: #6A9ECF;
+            stroke-width: 2px;
+        }
+
+        .node.family circle {
+            stroke: #F0D197;
+        }
+
+        .node.friend circle {
+            stroke: #8CC2A0;
+        }
+
+        .node.client circle {
+            stroke: #B3A0C9;
+        }
+
+        .link {
+            fill: none;
+            stroke: #DEDAD6;
+            stroke-width: 1.5px;
+        }
+
+        .node-info {
+            position: absolute;
+            background: rgba(242, 240, 236, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+            display: none;
+            z-index: 10;
+            min-width: 180px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 状态栏 -->
+    <div class="status-bar">
+        <div class="text-center">关系库</div>
+        <div class="absolute right-4">
+            <i class="fas fa-microphone text-primary"></i>
+        </div>
+    </div>
+
+    <!-- 搜索栏 -->
+    <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input type="text" class="search-input" placeholder="搜索联系人或关系">
+    </div>
+
+    <!-- 筛选标签栏 -->
+    <div class="tags-scroll">
+        <div class="tag active">全部</div>
+        <div class="tag">家人</div>
+        <div class="tag">朋友</div>
+        <div class="tag">客户</div>
+        <div class="tag">同事</div>
+        <div class="tag">健身伙伴</div>
+        <div class="tag">+添加</div>
+    </div>
+
+    <!-- 主内容 -->
+    <div class="main-content">
+        <!-- 关系图谱 -->
+        <div class="card graph-container" id="relationship-graph">
+            <!-- 图谱将通过JS渲染 -->
+            <div class="node-info" id="node-info">
+                <div class="flex items-center mb-3">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" class="avatar-sm mr-2">
+                    <div>
+                        <div class="font-medium">张美丽</div>
+                        <div class="text-xs text-secondary">家人 • 妈妈</div>
+                    </div>
+                </div>
+                <div class="text-xs text-secondary mb-1">下次提醒</div>
+                <div class="text-sm">5月12日 生日</div>
+            </div>
+        </div>
+
+        <!-- 智能分析卡片 -->
+        <div class="card mt-4">
+            <div class="flex justify-between items-center mb-3">
+                <div class="font-medium">本月关系维护提醒</div>
+                <i class="fas fa-chevron-right text-secondary text-sm"></i>
+            </div>
+            <div class="flex text-center">
+                <div class="flex-1">
+                    <div class="text-2xl font-medium text-primary">3</div>
+                    <div class="text-xs text-secondary mt-1">生日提醒</div>
+                </div>
+                <div class="flex-1">
+                    <div class="text-2xl font-medium text-warning">2</div>
+                    <div class="text-xs text-secondary mt-1">纪念日</div>
+                </div>
+                <div class="flex-1">
+                    <div class="text-2xl font-medium text-success">5</div>
+                    <div class="text-xs text-secondary mt-1">互动机会</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 最近联系人 -->
+        <div class="mt-5">
+            <div class="flex justify-between items-center mb-3">
+                <div class="font-medium">最近联系</div>
+                <div class="text-xs text-primary">查看全部</div>
+            </div>
+            <div class="card">
+                <div class="flex items-center mb-3">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" class="avatar-sm mr-2">
+                    <div>
+                        <div class="font-medium">李明</div>
+                        <div class="text-xs text-secondary">客户 • 上次联系：昨天</div>
+                    </div>
+                </div>
+                <div class="flex items-center mb-3">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" class="avatar-sm mr-2">
+                    <div>
+                        <div class="font-medium">王小红</div>
+                        <div class="text-xs text-secondary">朋友 • 上次联系：3天前</div>
+                    </div>
+                </div>
+                <div class="flex items-center">
+                    <img src="https://randomuser.me/api/portraits/men/75.jpg" class="avatar-sm mr-2">
+                    <div>
+                        <div class="font-medium">张伟</div>
+                        <div class="text-xs text-secondary">同事 • 上次联系：1周前</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 悬浮添加按钮 -->
+    <div class="float-btn">
+        <i class="fas fa-plus"></i>
+    </div>
+
+    <!-- 底部导航栏 -->
+    <div class="tab-bar">
+        <div class="tab-item active">
+            <div class="tab-icon"><i class="fas fa-users"></i></div>
+            <div class="tab-text">关系库</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-bell"></i></div>
+            <div class="tab-text">提醒</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon"><i class="fas fa-user"></i></div>
+            <div class="tab-text">我的</div>
+        </div>
+    </div>
+
+    <script>
+        // 简单关系图谱数据
+        const graphData = {
+            "nodes": [
+                { "id": "center", "name": "我", "group": "me", "radius": 30 },
+                { "id": "1", "name": "张美丽", "group": "family", "radius": 20, "relation": "妈妈" },
+                { "id": "2", "name": "张大伟", "group": "family", "radius": 20, "relation": "爸爸" },
+                { "id": "3", "name": "李明", "group": "client", "radius": 20, "relation": "客户" },
+                { "id": "4", "name": "王小红", "group": "friend", "radius": 20, "relation": "朋友" },
+                { "id": "5", "name": "赵强", "group": "friend", "radius": 20, "relation": "健身伙伴" },
+                { "id": "6", "name": "张伟", "group": "friend", "radius": 20, "relation": "同事" }
+            ],
+            "links": [
+                { "source": "center", "target": "1", "value": 3 },
+                { "source": "center", "target": "2", "value": 3 },
+                { "source": "center", "target": "3", "value": 2 },
+                { "source": "center", "target": "4", "value": 2 },
+                { "source": "center", "target": "5", "value": 1 },
+                { "source": "center", "target": "6", "value": 1 },
+                { "source": "1", "target": "2", "value": 3 },
+                { "source": "4", "target": "5", "value": 1 }
+            ]
+        };
+
+        // 初始化图谱
+        document.addEventListener('DOMContentLoaded', function () {
+            const width = document.getElementById('relationship-graph').offsetWidth;
+            const height = 300;
+
+            const svg = d3.select("#relationship-graph")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height);
+
+            const simulation = d3.forceSimulation(graphData.nodes)
+                .force("link", d3.forceLink(graphData.links).id(d => d.id).distance(100))
+                .force("charge", d3.forceManyBody().strength(-200))
+                .force("center", d3.forceCenter(width / 2, height / 2));
+
+            const link = svg.append("g")
+                .selectAll("line")
+                .data(graphData.links)
+                .enter().append("line")
+                .attr("class", "link");
+
+            const node = svg.append("g")
+                .selectAll(".node")
+                .data(graphData.nodes)
+                .enter().append("g")
+                .attr("class", d => `node ${d.group}`)
+                .call(d3.drag()
+                    .on("start", dragstarted)
+                    .on("drag", dragged)
+                    .on("end", dragended));
+
+            node.append("circle")
+                .attr("r", d => d.radius);
+
+            node.append("text")
+                .attr("dy", 30)
+                .attr("text-anchor", "middle")
+                .text(d => d.name)
+                .attr("font-size", "12px")
+                .attr("fill", "#8E8E93");
+
+            node.on("click", function (event, d) {
+                if (d.id === "center") return;
+
+                const nodeInfo = document.getElementById('node-info');
+                nodeInfo.style.display = "block";
+                nodeInfo.style.left = (event.pageX - 90) + "px";
+                nodeInfo.style.top = (event.pageY - 100) + "px";
+            });
+
+            d3.select("body").on("click", function (event) {
+                if (!event.target.closest(".node") && !event.target.closest("#node-info")) {
+                    document.getElementById('node-info').style.display = "none";
+                }
+            });
+
+            simulation.on("tick", () => {
+                link
+                    .attr("x1", d => d.source.x)
+                    .attr("y1", d => d.source.y)
+                    .attr("x2", d => d.target.x)
+                    .attr("y2", d => d.target.y);
+
+                node.attr("transform", d => `translate(${d.x},${d.y})`);
+            });
+
+            function dragstarted(event) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                event.subject.fx = event.subject.x;
+                event.subject.fy = event.subject.y;
+            }
+
+            function dragged(event) {
+                event.subject.fx = event.x;
+                event.subject.fy = event.y;
+            }
+
+            function dragended(event) {
+                if (!event.active) simulation.alphaTarget(0);
+                event.subject.fx = null;
+                event.subject.fy = null;
+            }
+        });
+
+        // 标签点击事件
+        document.querySelectorAll('.tag').forEach(tag => {
+            tag.addEventListener('click', () => {
+                document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+                tag.classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>
